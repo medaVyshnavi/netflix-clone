@@ -2,6 +2,8 @@
 
 - initialise the project
 - install tailwind css
+- Header
+- Login Form
 
 # Features
 
