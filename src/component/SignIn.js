@@ -1,10 +1,32 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import { validate } from "../utils/validate";
 
 const SignIn = () => {
   const [isUser, setIsUser] = useState(true);
+  const [errMsg, setErrMsg] = useState(null);
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const fullNameRef = useRef();
 
   const handleUser = () => {
     setIsUser(!isUser);
+  };
+
+  const handleValidation = (e) => {
+    e.preventDefault();
+    console.log(
+      emailRef.current.value,
+      passwordRef.current.value,
+      fullNameRef?.current?.value
+    );
+    const message = validate(
+      emailRef.current.value,
+      passwordRef?.current?.value,
+      fullNameRef?.current?.value,
+      isUser
+    );
+    setErrMsg(message);
   };
   return (
     <>
@@ -23,7 +45,7 @@ const SignIn = () => {
           className="w-4/12"
         />
       </div>
-      <div className="absolute top-28 left-0 right-0 m-auto bg-[#000000bf] w-1/3 h-5/6 text-white">
+      <form className="absolute top-28 left-0 right-0 m-auto bg-[#000000bf] w-1/3 text-white">
         <div className="py-20 px-20 ">
           <h1 className="text-3xl font-bold py-3">
             {isUser ? "Sign In" : "Sign Up"}
@@ -32,6 +54,7 @@ const SignIn = () => {
             type="text"
             placeholder="Email or phone number"
             className="bg-[#333] px-5 py-3 rounded-md mt-4 mb-2 w-full"
+            ref={emailRef}
           />
           {isUser ? (
             ""
@@ -39,6 +62,7 @@ const SignIn = () => {
             <input
               type="text"
               placeholder="Full Name"
+              ref={fullNameRef}
               className="bg-[#333] px-5 py-3 rounded-md my-3 w-full"
             />
           )}
@@ -46,15 +70,25 @@ const SignIn = () => {
             type="password"
             placeholder="Password"
             className="bg-[#333] px-5 py-3 rounded-md mb-4 mt-2 w-full"
+            ref={passwordRef}
           />
-          <button className="bg-red-500 text-white rounded-md px-28 py-3 my-6 w-full">
+          <div className="text-red-700 font-normal">{errMsg}</div>
+          <button
+            className="bg-red-500 text-white rounded-md px-28 py-3 my-6 w-full"
+            onClick={handleValidation}
+          >
             {isUser ? "Sign In" : "Sign Up"}
           </button>
           <div className="flex justify-between items-center text-[#b3b3b3]">
             {isUser ? (
               <div>
-                <input type="checkbox" id="rememberMe" checked={true} />
-                <label for="rememberMe"> Remember Me</label>
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                  checked={true}
+                  readOnly
+                />
+                <label htmlFor="rememberMe"> Remember Me</label>
               </div>
             ) : (
               ""
@@ -73,7 +107,7 @@ const SignIn = () => {
             </h2>
           </div>
         </div>
-      </div>
+      </form>
     </>
   );
 };

@@ -3,7 +3,13 @@
 - initialise the project
 - install tailwind css
 - Header
-- Login Form
+- routing
+- SignIn / SignUp Form
+- Form Validation
+- useRef Hook
+- firebase setup
+- deployed app to production
+- Sign up user account
 
 # Features
 
