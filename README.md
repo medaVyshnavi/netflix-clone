@@ -10,6 +10,10 @@
 - firebase setup
 - deployed app to production
 - Sign up user account
+- Implement Sign In and Sign Up API firebase
+- setup of redux-toolkit
+- api call to logout
+- update the store with login data and clear the data after signout
 
 # Features
 

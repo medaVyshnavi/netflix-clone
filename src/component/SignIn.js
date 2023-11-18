@@ -1,7 +1,18 @@
 import React, { useRef, useState } from "react";
 import { validate } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isUser, setIsUser] = useState(true);
   const [errMsg, setErrMsg] = useState(null);
 
@@ -15,11 +26,6 @@ const SignIn = () => {
 
   const handleValidation = (e) => {
     e.preventDefault();
-    console.log(
-      emailRef.current.value,
-      passwordRef.current.value,
-      fullNameRef?.current?.value
-    );
     const message = validate(
       emailRef.current.value,
       passwordRef?.current?.value,
@@ -27,6 +33,52 @@ const SignIn = () => {
       isUser
     );
     setErrMsg(message);
+    if (message) return;
+
+    if (!isUser) {
+      createUserWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef?.current?.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: fullNameRef?.current?.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              const { uid, displayName, email } = auth.currentUser;
+              dispatch(addUser({ uid: uid, name: displayName, email: email }));
+              navigate("/browse");
+            })
+            .catch((error) => {
+              setErrMsg(error.message);
+            });
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrMsg(errorMessage);
+        });
+    } else {
+      signInWithEmailAndPassword(
+        auth,
+        emailRef.current.value,
+        passwordRef?.current?.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          if (user) {
+            navigate("/browse");
+          }
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrMsg(errorMessage);
+        });
+    }
   };
   return (
     <>
@@ -74,7 +126,7 @@ const SignIn = () => {
           />
           <div className="text-red-700 font-normal">{errMsg}</div>
           <button
-            className="bg-red-500 text-white rounded-md px-28 py-3 my-6 w-full"
+            className="bg-red-500 text-white rounded-md px-28 py-3 my-6 w-full cursor-pointer"
             onClick={handleValidation}
           >
             {isUser ? "Sign In" : "Sign Up"}
