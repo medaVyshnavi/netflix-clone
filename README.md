@@ -14,6 +14,8 @@
 - setup of redux-toolkit
 - api call to logout
 - update the store with login data and clear the data after signout
+- Show name in Profile
+- TMDB movie API
 
 # Features
 
