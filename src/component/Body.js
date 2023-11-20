@@ -23,7 +23,7 @@ const Body = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, displayName, email } = user;
         dispatch(addUser({ uid: uid, name: displayName, email: email }));
@@ -31,6 +31,8 @@ const Body = () => {
         dispatch(removeUser());
       }
     });
+    // unsubscribe the component when unmounted
+    return () => unsubscribe();
   }, []);
   return (
     <RouterProvider router={appRouter}>

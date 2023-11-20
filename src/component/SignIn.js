@@ -9,6 +9,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { profile_photo } from "../utils/constant";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ const SignIn = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: fullNameRef?.current?.value,
-            photoURL: "https://example.com/jane-q-user/profile.jpg",
+            photoURL: profile_photo,
           })
             .then(() => {
               const { uid, displayName, email } = auth.currentUser;
