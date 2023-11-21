@@ -3,3 +3,12 @@ export const USER_LOGO =
 export const LOGO =
   "https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png";
 export const profile_photo = "https://example.com/jane-q-user/profile.jpg";
+
+export const OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYzMzMjZkZDZhOGJkODFmZGUxMmZkYjcyNjAwODQwYiIsInN1YiI6IjY1NWI0ZWYxZWE4NGM3MTA5MzAzNmE3NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AHgqm9RCIcWpvzuF6xKtK-Cp1GcEfD7fKFpWfHvPf_A",
+  },
+};

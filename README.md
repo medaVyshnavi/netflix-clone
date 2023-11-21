@@ -16,6 +16,8 @@
 - update the store with login data and clear the data after signout
 - Show name in Profile
 - TMDB movie API
+- get Now playing movies from API
+- customHook
 
 # Features
 
