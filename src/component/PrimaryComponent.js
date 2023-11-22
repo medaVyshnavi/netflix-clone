@@ -9,10 +9,10 @@ const PrimaryComponent = () => {
   if (!moviesList) return;
   const movieBackground = moviesList[0];
 
-  const { original_title, overview } = movieBackground;
+  const { original_title, overview, id } = movieBackground;
   return (
     <div>
-      <VedioBackground movieBackground={movieBackground} />
+      <VedioBackground id={id} />
       <VedioTitle original_title={original_title} overview={overview} />
     </div>
   );
