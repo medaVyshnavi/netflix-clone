@@ -18,11 +18,7 @@ const VedioBackground = ({ id }) => {
   useEffect(() => {
     fetchVedio();
   }, []);
-  return (
-    <div>
-      <VedioBackground />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default VedioBackground;
