@@ -6,8 +6,11 @@ import { auth } from "../utils/firebase";
 import { useSelector } from "react-redux";
 import { USER_LOGO } from "../utils/constant";
 import { useNowPlayingMovies } from "../hooks/useNowPlayingMovies";
+import { usePopularMovies } from "../hooks/usePopularMovies";
 import PrimaryComponent from "./PrimaryComponent";
 import SecondaryComponent from "./SecondaryComponent";
+import { useTopRated } from "../hooks/useTopRated";
+import { useUpcoming } from "../hooks/useUpcoming";
 
 const Browse = () => {
   const navigate = useNavigate();
@@ -22,6 +25,9 @@ const Browse = () => {
   };
 
   useNowPlayingMovies();
+  usePopularMovies();
+  useTopRated();
+  useUpcoming();
 
   return (
     <div className="text-white">
@@ -32,7 +38,7 @@ const Browse = () => {
           <h2>{user?.name}</h2>
         </div>
       </div>
-      <div>
+      <div className="">
         <PrimaryComponent />
         <SecondaryComponent />
       </div>

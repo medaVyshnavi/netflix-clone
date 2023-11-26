@@ -18,6 +18,7 @@
 - TMDB movie API
 - get Now playing movies from API
 - customHook
+- embed the trailer vedio using iFrame
 
 # Features
 
