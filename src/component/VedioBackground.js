@@ -1,24 +1,23 @@
-import React, { useEffect } from "react";
-import { OPTIONS } from "../utils/constant";
+import React from "react";
+import { useSelector } from "react-redux";
+import useMovieTrailer from "../hooks/useMovieTrailer";
 
 const VedioBackground = ({ id }) => {
-  const fetchVedio = async () => {
-    const vedioList = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
-      OPTIONS
-    );
-    const data = await vedioList.json();
-    const movieTrailer = data.results.filter(
-      (vedio) => vedio.type === "Trailer"
-    );
+  const trailerKey = useSelector((store) => store.movies.trailerMovie);
+  useMovieTrailer(id);
 
-    const vedio = movieTrailer.length ? movieTrailer[0] : data.results[0];
-  };
-
-  useEffect(() => {
-    fetchVedio();
-  }, []);
-  return <div></div>;
+  return (
+    <div>
+      <iframe
+        width="560"
+        height="315"
+        src={`https://www.youtube.com/embed/${trailerKey}`}
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+      ></iframe>
+    </div>
+  );
 };
 
 export default VedioBackground;
