@@ -19,6 +19,7 @@
 - get Now playing movies from API
 - customHook
 - embed the trailer vedio using iFrame
+- render upcoming, top Rated, playing now and popular movies on browse page
 
 # Features
 
