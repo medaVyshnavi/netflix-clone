@@ -24,8 +24,8 @@ const Browse = () => {
   useNowPlayingMovies();
 
   return (
-    <div>
-      <div className="flex justify-around items-center">
+    <div className="text-white">
+      <div className="flex justify-between items-center absolute bg-gradient-to-r from-black z-10 px-5">
         <Header />
         <div className="cursor-pointer tooltip" onClick={logoutUser}>
           <img src={USER_LOGO} alt="user-logo" />
