@@ -9,7 +9,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-import { profile_photo } from "../utils/constant";
+import { profile_photo, BACKGROUND_IMAGE } from "../utils/constant";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -84,10 +84,7 @@ const SignIn = () => {
   return (
     <>
       <div>
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/a09bb938-2d90-42ae-986e-5a3e4abf9e77/f81f5535-4709-4205-be63-32f3706a64c5/JP-en-20231113-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="netflix-background"
-        />
+        <img src={BACKGROUND_IMAGE} alt="netflix-background" />
         <div className="bg-gradient-to-b from-black w-full h-4/5 absolute top-0" />
       </div>
 
