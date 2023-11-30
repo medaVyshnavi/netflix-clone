@@ -6,6 +6,8 @@ import { USER_LOGO } from "../utils/constant";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { supportedLang } from "../utils/supportedLang";
+import { setLang } from "../utils/configSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -24,11 +26,22 @@ const Navbar = () => {
       .catch((error) => {});
   };
 
+  const handleLanguage = (e) => {
+    dispatch(setLang(e.target.value));
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center fixed bg-gradient-to-r from-black z-10 px-5">
         <Header />
         <div className="flex justify-evenly items-center">
+          <select className="text-black" onChange={(e) => handleLanguage(e)}>
+            {supportedLang.map((lang) => (
+              <option key={lang.id} value={lang.id}>
+                {lang.name}
+              </option>
+            ))}
+          </select>
           <button
             className="px-4 py-2 mx-4 bg-purple-700 text-white rounded-md"
             onClick={handleToggleAction}
