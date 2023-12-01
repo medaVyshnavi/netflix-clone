@@ -17,9 +17,12 @@
 - Show name in Profile
 - TMDB movie API
 - get Now playing movies from API
-- customHook
+- customHooks
 - embed the trailer vedio using iFrame
 - render upcoming, top Rated, playing now and popular movies on browse page
+- GPT search page , search bar
+- multilingual support
+-
 
 # Features
 
