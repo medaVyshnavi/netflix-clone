@@ -17,6 +17,3 @@ export const MOVIE_POSTER_CDN_LINK = "https://image.tmdb.org/t/p/w200/";
 
 export const BACKGROUND_IMAGE =
   "https://assets.nflxext.com/ffe/siteui/vlv3/a09bb938-2d90-42ae-986e-5a3e4abf9e77/f81f5535-4709-4205-be63-32f3706a64c5/JP-en-20231113-popsignuptwoweeks-perspective_alpha_website_large.jpg";
-
-export const OPEN_API_KEY =
-  "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";
