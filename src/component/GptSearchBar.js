@@ -1,10 +1,12 @@
 import React, { useRef } from "react";
 import { BACKGROUND_IMAGE, OPTIONS } from "../utils/constant";
 import { langConstants } from "../utils/langConstants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import openAiKey from "../utils/openai";
+import { addGPTMovies, searchMovies } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
+  const dispatch = useDispatch();
   const selector = useSelector((store) => store.config.lang);
   const inputRef = useRef(null);
   const dummyArray = [
@@ -30,14 +32,14 @@ const GptSearchBar = () => {
     const recommededMovies = chatCompletion?.choices
       ? chatCompletion?.choices[0].message.content.split(",")
       : dummyArray;
-
+    dispatch(searchMovies(recommededMovies));
     // console.log(recommededMovies, 222);
 
     // since its a async function it will take some time to fetch the results and returns a
     // PROMISE instead of results. array of promise are returned.
     const promiseArray = recommededMovies.map((item) => movieList(item));
     const value = await Promise.all(promiseArray);
-    console.log(value);
+    dispatch(addGPTMovies(value));
   };
 
   return (
