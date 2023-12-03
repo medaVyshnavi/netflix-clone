@@ -11,7 +11,6 @@ import Navbar from "./Navbar";
 
 const Browse = () => {
   const isGpt = useSelector((store) => store.gpt.isGPT);
-  console.log(isGpt, 99);
 
   useNowPlayingMovies();
   usePopularMovies();

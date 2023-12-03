@@ -22,7 +22,8 @@
 - render upcoming, top Rated, playing now and popular movies on browse page
 - GPT search page , search bar
 - multilingual support
--
+- gpt recommeded movies
+- render suggested movies details to the user
 
 # Features
 

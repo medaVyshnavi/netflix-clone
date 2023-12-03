@@ -23,7 +23,7 @@ const GptSearchBar = () => {
   };
 
   const handleFetchResults = async () => {
-    const searchQuery = `Give me 5 movie names of ${inputRef.current.value} comma separated in this format ["hello","chakde india","saptha sagara","bulbul","kgf"]`;
+    const searchQuery = `Give me 5 movie names of ${inputRef.current.value} comma separated in this format hello,chakde india,saptha sagara,bulbul,kgf`;
     const chatCompletion = await openAiKey.chat.completions.create({
       messages: [{ role: "user", content: searchQuery }],
       model: "gpt-3.5-turbo",
@@ -44,7 +44,7 @@ const GptSearchBar = () => {
 
   return (
     <>
-      <div className="absolute -z-10">
+      <div className="fixed -z-10">
         <img src={BACKGROUND_IMAGE} alt="netflix-background" />
         <div className="bg-gradient-to-b from-black w-full h-4/5 absolute top-0" />
       </div>
