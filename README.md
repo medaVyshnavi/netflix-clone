@@ -25,6 +25,7 @@
 - gpt recommeded movies
 - render suggested movies details to the user
 - env file
+- memoization
 
 # Features
 
